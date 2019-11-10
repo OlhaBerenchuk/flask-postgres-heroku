@@ -1,7 +1,7 @@
 {% include "header.html" %}
 
 {% block body %}
-<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add user</button>
+<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal" onclick="#myModal">Add user</button>
 <table class="table table-striped">
     <tbody>
     <tr>
@@ -88,7 +88,3 @@
 </div>
 
 {% endblock %}
-
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
-
-<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
