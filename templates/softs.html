@@ -1,12 +1,14 @@
 {% include "header.html" %}
 
 {% block body %}
-<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add doc</button>
+<button type="button" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal" onclick="#myModal">Add soft</button>
 <table class="table table-striped">
     <tbody>
     <tr>
-        <th>Link</th>
-        <th>Actor</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Vendor</th>
+        <th>Version</th>
         <th>Action</th>
     </tr>
 
@@ -14,9 +16,11 @@
         <tr>
             <td>{{row.0}}</td>
             <td>{{row.1}}</td>
+            <td>{{row.2}}</td>
+            <td>{{row.3}}</td>
             <td>
-                <a href="/update_doc/{{ row.0 }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
-                <a href="/delete_doc/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                <a href="/update_soft/{{ row.0 }}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+                <a href="/delete_soft/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
             </td>
         </tr>
         <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
@@ -27,15 +31,23 @@
                         <h4 class="modal-title">Update Information</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url_for('update_doc') }}" method="POST">
+                        <form action="{{ url_for('update_soft') }}" method="POST">
                             <div class="form-group">
-                                <label>Link:</label>
-                                <input type="hidden"  name="id" value="{{row.0}}">
-                                <input type="text" class="form-control" name="link" value="{{row.0}}">
+                                <label>Name:</label>
+                                <input type="hidden" name="id" value="{{row.0}}">
+                                <input type="text" class="form-control" name="name" value="{{row.0}}">
                             </div>
                             <div class="form-group">
-                                <label>Actor:</label>
-                                <input type="text" class="form-control" name="actor" value="{{row.1}}">
+                                <label>Price:</label>
+                                <input type="text" class="form-control" name="price" value="{{row.1}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Vendor:</label>
+                                <input type="text" class="form-control" name="vendor" value="{{row.2}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Version:</label>
+                                <input type="text" class="form-control" name="version" value="{{row.3}}">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Update</button>
@@ -64,14 +76,22 @@
                 <h4 class="modal-title">Please insert data</h4>
             </div>
             <div class="modal-body">
-                <form action="{{ url_for('insert_doc') }}" method="POST">
+                <form action="{{ url_for('insert_soft') }}" method="POST">
                     <div class="form-group">
-                        {{ form.actor.label }}
-                        {{ form.actor }}
+                        {{ form.name.label }}
+                        {{ form.name }}
                     </div>
                     <div class="form-group">
-                        {{ form.link.label }}
-                        {{ form.link }}
+                        {{ form.price.label }}
+                        {{ form.price }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.vendor.label }}
+                        {{ form.vendor }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.version.label }}
+                        {{ form.version }}
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Insert Data</button>
@@ -86,7 +106,3 @@
 </div>
 
 {% endblock %}
-
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
-
-<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>

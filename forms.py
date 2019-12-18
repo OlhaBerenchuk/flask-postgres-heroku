@@ -1,11 +1,18 @@
 from flask_wtf import Form
-from wtforms import StringField
+from wtforms import StringField, IntegerField
 from wtforms.validators import Email, InputRequired, URL
 
 
 class UserForm(Form):
     name = StringField('name', validators=[InputRequired()])
     email = StringField('email', validators=[InputRequired(), Email(message="It\'s not an email!")])
+
+
+class SoftForm(Form):
+    name = StringField('name', validators=[InputRequired()])
+    price = IntegerField('price')
+    vendor = IntegerField('vendor')
+    version = StringField('version')
 
 
 class FileForm(Form):
