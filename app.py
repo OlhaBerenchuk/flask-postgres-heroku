@@ -282,8 +282,8 @@ def update_doc():
     actor = request.form['actor']
     link = request.form['link']
     doc = Documentation.query.filter_by(documentation_link=id).first()
-    doc.actor = actor
-    doc.link = link
+    doc.documentation_actor = actor
+    doc.documentation_link = link
     db.session.add(doc)
     db.session.commit()
     return redirect('/doc')
@@ -291,7 +291,7 @@ def update_doc():
 
 @app.route('/delete_doc/<string:id>', methods=['get'])
 def delete_doc(id):
-    doc = Documentation.query.filter_by(documentation__link=id).first()
+    doc = Documentation.query.filter_by(documentation_link=id).first()
     db.session.delete(doc)
     db.session.commit()
     return redirect('/doc')
